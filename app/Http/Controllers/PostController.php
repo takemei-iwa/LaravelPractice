@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 // モデルクラスの名前は単数形、それに対応するテーブル名は複数形
 use App\Models\Post;
 
+use App\Http\Requests\PostRequest;
+
 class PostController extends Controller
 {
     public function index(Post $post)//インポートしたPostをインスタンス化して$postとして使用。
@@ -28,4 +30,15 @@ class PostController extends Controller
         return view('posts.show')->with(['post' => $post]);
     //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+    public function store(PostRequest $request, Post $post)
+    {
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }    
 }
