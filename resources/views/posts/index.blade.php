@@ -11,7 +11,7 @@
             ブログ
             </x-slot>            
         <body>
-            <h1>Blog Name</h1>
+            <h1>Hi! {{ Auth::user()->name }}</h1>    
             <div class='posts'>
                 @foreach ($posts as $post)
                     <div class='post'>
