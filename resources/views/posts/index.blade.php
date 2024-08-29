@@ -32,6 +32,11 @@
                 {{ $posts->links() }}
             </div>
             <a href='/posts/create'>create</a>
+            <div>
+                @foreach($questions as $question)
+                    <div>{{ $question['title'] }}</div>
+                @endforeach
+            </div>
         </body>
     </x-app-layout>
     <script>
